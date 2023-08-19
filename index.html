@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website</title>
+    <script src="./gsap.min.js"></script>
+    <script src="./janpaepke-ScrollMagic-5915165/scrollmagic/minified/ScrollMagic.min.js"></script>
+    <script src="./janpaepke-ScrollMagic-5915165/scrollmagic/minified/plugins/debug.addIndicators.min.js"></script>
+    <script src="./janpaepke-ScrollMagic-5915165/scrollmagic/minified/plugins/animation.gsap.min.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            color: white;
+        }
+
+        body {
+            margin: 0;
+            height: 1000vh;
+        }
+
+
+        .navbar {
+            width: 100%;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 50;
+            position: fixed;
+            background-color: #262626;
+        }
+
+        .navlinks {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            list-style: none;
+            font-size: 15px;
+        }
+
+        .navlink {
+            margin: auto 30px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .navlink:nth-child(1) {
+            font-size: 20px;
+        }
+
+        .navlink::after {
+            content: '';
+            position: absolute;
+            height: 1px;
+            width: 100%;
+            border-radius: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: white;
+            scale: 0;
+            transition: all 0.5s ease;
+        }
+
+        .navlink:hover::after {
+            scale: 1;
+        }
+
+        .hamburger {
+            position: relative;
+            height: 60px;
+            width: 60px;
+            margin-right: 20px;
+        }
+
+        .bar {
+            position: absolute;
+            height: 2px;
+            width: 35px;
+            background-color: white;
+            border-radius: 2rem;
+            transition: all ease 0.5s;
+
+        }
+
+        .bar:nth-child(1) {
+            top: 25px;
+        }
+
+        .bar:nth-child(2) {
+            top: 30px;
+        }
+
+        .bar:nth-child(3) {
+            top: 35px;
+            width: 25px;
+        }
+
+        .hamburger:hover .bar:nth-child(3) {
+            top: 35px;
+            width: 35px;
+        }
+
+        .hamburger.active .bar:nth-child(1) {
+            top: 30px;
+            transform: rotate(45deg) scale(0.7);
+        }
+
+        .hamburger.active .bar:nth-child(2) {
+            top: 30px;
+            transform: rotate(-45deg)scale(0.7);
+        }
+
+        .hamburger.active .bar:nth-child(3) {
+            scale: 0;
+        }
+
+        .header {
+            background-size: cover;
+            position: relative;
+        }
+
+        .svg {
+            display: flex;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .svg svg {
+            height: 100%;
+            width: 100%;
+        }
+
+        @media (max-width:768px) {
+            .navlinks {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="navitems">
+            <ul class="navlinks">
+                <li class="navlink"><a href="#home">Home</a></li>
+                <li class="navlink"><a href="#services">Services</a></li>
+            </ul>
+        </div>
+        <div class="hamburger" onclick="rotate();">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </div>
+
+    <header class="header" id="home">
+        <div class="svg" id="svg">
+            <svg class="innersvg" version="1.0" xmlns="http://www.w3.org/2000/svg" width="500.000000pt"
+                height="150.000000pt" viewBox="0 0 500.000000 150.000000" preserveAspectRatio="xMidYMid meet">
+                <g transform="translate(0.000000,150.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
+                    <path id="path1" style="stroke-linecap: round; stroke-linejoin: round" fill="none" stroke="#000000"
+                        stroke-width="5"
+                        d="m 2130,886 c -29.9994,-26.02697 -45.6782,-91.10562 -85.4804,-90.4228 -52.2047,12.51822 -114.1513,28.42911 -161.806,-4.97892 -18.5353,-12.26714 -13.3054,-81.99768 2.3802,-34.37953 36.2679,42.47651 104.806,44.45934 151.4448,18.83984 -29.7493,-52.32826 -79.7066,-89.89529 -130.5589,-120.00649 -27.7307,-15.29174 -73.6427,12.55552 -82.8406,18.04529 6.1176,-45.49335 65.6138,-50.9503 98.9397,-32.32291 60.8175,37.15113 100.0499,101.28251 162.7342,135.85906 47.8124,0.21719 27.3138,-60.82803 42.2644,-89.89249 28.0269,-35.69927 70.6056,7.46871 94.5605,27.97838 20.1262,24.67316 -26.3673,-64.05861 11.0581,-34.07779 39.2905,36.32509 61.9279,88.9661 109.0384,116.89742 -3.8067,-37.57258 -33.0291,-78.31116 -11.5879,-114.60133 38.3123,-37.19875 82.2272,69.77484 110.0131,12.51988 22.2142,-47.35901 79.0728,32.8376 88.5567,28.76385 -6.4662,-50.79682 50.572,-69.86467 78.6677,-28.63362 40.1792,33.19207 56.1845,88.5177 98.0342,119.07958 52.2087,12.82937 5.0886,-60.95581 -11.3186,-77.92541 -40.881,-42.47621 31.0395,-95.46401 57.0203,-42.71117 11.1297,18.8283 78.0153,-4.76575 56.5207,-10.60896 -12.5287,52.45795 39.3917,87.36613 74.6538,115.73242 11.0434,17.7055 91.7704,16.46894 37.4822,30.04768 -63.33,-4.08811 -102.3198,-60.44984 -145.7535,-99.26839 -10.1709,-30.90177 -84.0111,-53.28307 -55.3043,-0.57421 8.7775,33.05206 57.2635,65.60413 36.7858,99.50435 -26.7066,1.05212 -54.9447,1.31711 -38.2896,37.59762 -52.2213,-20.27104 -45.1344,-86.1172 -79.593,-121.73659 -16.7049,-18.90134 -66.0575,-88.32368 -80.1,-38.9305 C 2542.5231,749.41377 2614,782.21867 2587,820 c -50.0609,-32.97235 -64.1661,-103.29226 -122.2188,-126.5 -52.2929,26.68461 23.6845,78.59566 31.991,106.70922 -51.7162,4.61346 -62.3927,-55.19196 -94.0201,-83.05604 -18.0006,-28.81282 -76.5864,-42.69817 -55.1915,8.35351 2.6168,31.48132 44.1581,85.14521 22.4444,102.10415 -41.7679,-7.11148 -76.5817,-72.07833 -104.2068,-72.69966 18.3584,27.99266 7.6955,94.27252 -14.6638,34.09888 -20.0648,-45.48955 -49.705,-101.43795 -105.1969,-106.38506 -25.4696,34.43575 17.2551,96.30949 32.7172,95.24449 -52.3348,4.70914 -4.5433,64.31263 3.0245,91.91793 2.3255,39.10912 39.1237,71.43245 31.4751,110.86102 C 2180.0448,954.26053 2156.1857,918.75309 2130,886 Z m 13,-46 c 6.8917,-32.1459 -39.7004,-84.90603 -52.2889,-37.36852 11.9147,26.97545 47.1178,86.9694 64.1592,82.67662 C 2151.8296,869.97988 2147.343,854.9951 2143,840 Z" />
+                    <path id="path2" style="stroke-linecap: round; stroke-linejoin: round" fill="none" stroke="#000000"
+                        stroke-width="5"
+                        d="m 3072,803 c -45.3251,-30.28573 -76.8304,-76.19122 -119.4688,-109.65625 -22.089,-3.81669 -27.5741,21.33376 -20.5486,37.50077 4.1399,19.07098 14.6988,37.20226 13.4669,57.09411 -7.1158,12.65302 -22.7423,-11.94059 -32.6247,-16.36914 -30.6899,-25.76943 -57.9638,-55.93552 -78.6998,-90.31949 24.7401,4.92223 38.9035,28.61491 56.5359,44.42908 5.8288,9.39124 18.6862,11.65288 15.0475,-3.16438 0.5401,-15.55775 -6.9908,-38.95359 10.9057,-47.13713 21.9431,-9.66269 41.9089,8.09531 59.9051,18.32488 16.0169,13.37959 40.6121,8.44347 48.887,-10.90557 24.5213,-4.93778 44.6106,14.88063 60.6264,30.55694 15.1706,13.99083 26.563,33.22626 45.5849,42.28353 13.1286,-0.82493 -4.9699,-21.38276 -5.8667,-30.30476 -17.5332,-41.28365 -42.7729,-82.88046 -84.2508,-103.59821 -25.0496,-21.49075 -54.201,-42.03646 -66.7848,-73.7685 -7.0089,-17.18788 2.6201,-36.36271 17.7848,-45.46588 30.1323,-3.36069 55.0817,18.99649 69.9092,42.92193 21.0222,32.60383 36.8616,68.35819 59.6061,99.85079 25.9702,35.08376 58.7723,64.17039 90.0218,94.3679 8.5062,23.6842 -18.9424,-2.10781 -25.4803,-8.66754 -13.3587,-11.78193 -25.4152,-25.2605 -40.2541,-35.22308 -5.2131,15.47777 7.539,30.20307 13.2207,43.99445 6.2759,14.5143 18.5961,30.22253 13.139,46.63218 -13.5621,15.92868 -29.792,-1.29145 -40.0994,-11.68784 -32.1631,-30.55263 -60.7764,-69.2957 -105.1587,-82.47981 -8.4261,30.85779 13.0293,59.83329 34.5248,79.60412 19.2918,17.04142 41.1938,32.54559 65.6448,40.79982 9.955,2.74019 32.089,0.17689 33.6677,10.90381 -19.0666,11.7621 -41.7781,3.57368 -60.5096,-4.55851 C 3090.7479,814.41477 3081.2355,808.90137 3072,803 Z m -8,-205 c -19.4671,-27.06941 -32.6111,-61.05883 -62.2414,-79.00013 -11.1719,-7.00235 -29.6453,-4.83684 -18.7164,10.62509 16.3329,42.50217 50.9686,76.23679 90.5203,97.67777 C 3075.0534,616.51768 3067.6615,607.49834 3064,598 Z" />
+                </g>
+            </svg>
+        </div>
+    </header>
+
+</body>
+<script>
+    let hamburger = document.querySelector(".hamburger");
+    function rotate() {
+        hamburger.classList.toggle("active")
+    }
+
+    var path1 = document.getElementById("path1");
+    var path2 = document.getElementById("path2");
+    var svg = document.querySelector(".innersvg");
+    var controller = new ScrollMagic.Controller();
+
+    function preparePath(el) {
+        var length = el.getTotalLength();
+        el.style.strokeDasharray = length;
+        el.style.strokeDashoffset = length;
+    }
+
+    preparePath(path1);
+    preparePath(path2);
+
+    var tween = new TimelineMax()
+        .add(
+            TweenMax.to(path1, 2, { strokeDashoffset: 0, ease: Linear.easeNone })
+        )
+        .add(
+            TweenMax.to(path2, 2, { strokeDashoffset: 0, ease: Linear.easeNone })
+        )
+        .add(
+            TweenMax.to([path1, path2], 0.2, {
+                fill: "black",
+                ease: Linear.easeNone,
+            })
+        )
+
+    var scene = new ScrollMagic.Scene({
+        targetElement: "#trigger",
+        duration: 2000
+    })
+        .setPin(".svg")
+        .setTween(tween)
+        .addIndicators({ name: "Indicator" })
+        .addTo(controller);
+</script>
+
+</html>
